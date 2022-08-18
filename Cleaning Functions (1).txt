@@ -1,0 +1,70 @@
+Missing value imputation with specific value:
+
+def mvp(df,col,value):
+arguments = pyspark dataframe
+col = column name
+value = Value that you want to impute
+    df=df.withColumn(col,f.when(f.col(col).contains('NULL')|f.col(col).contains("None")|f.col(col).isNull()|isnan(col), value)
+                       .otherwise(df[col]))
+    return df
+
+
+Changing all the columns of pyspark dataframe to uppercase
+
+def colu(df):
+        for col in df.columns:
+        df = df.withColumnRenamed(col,col.upper())
+    return df
+
+Changing all the columns of pyspark dataframe to lowercase
+
+def coll(df):
+    
+    for col in df.columns:
+        df = df.withColumnRenamed(col,col.lower())
+    return df
+
+def colls(df, col_list = []):
+    for col in col_list:
+        df = df.withColumnRenamed(col,col.lower())
+    return df
+
+Changing specific columns of pyspark dataframe to lowercase
+
+def col1(df, col_list = []):
+    for col in col_list:
+        df = df.withColumnRenamed(col,col.lower())
+    return df
+
+Changing all the specific columns of pyspark dataframe to uppercase
+
+def col1(df, col_list = []):
+    for col in col_list:
+        df = df.withColumnRenamed(col,col.lower())
+    return df
+
+
+Change column type to String datatype
+
+import pyspark.sql.functions as F
+from pyspark.sql.types import DecimalType, StringType, IntegerType
+
+def dtc (df, string_col = []):
+    for column in string_col:
+            df = df.withColumn(column, F.col(column).cast(StringType()))
+    return df
+
+Change column type to Interger datatype (if its double we must use round function also)
+
+import pyspark.sql.functions as F
+from pyspark.sql.types import DecimalType, StringType, IntegerType
+
+def dtc (df, string_col = []):
+    for column in string_col:
+            df = df.withColumn(column, F.col(column).cast(IntegerType()))
+    return df
+
+
+
+
+
